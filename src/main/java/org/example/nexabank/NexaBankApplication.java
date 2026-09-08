@@ -1,7 +1,8 @@
 package org.example.nexabank;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Scanner;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class NexaBankApplication {
@@ -9,6 +10,7 @@ public class NexaBankApplication {
     public static void main(String[] args) {
         
         Scanner scan = new Scanner(System.in);
+        
         
         int choice = 0;
 
