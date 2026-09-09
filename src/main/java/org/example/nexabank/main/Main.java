@@ -46,6 +46,9 @@ public class Main {
 
                     if(passed){
                         Customer ada = manager.managerBoard();
+                        if(ada == null){
+                            break;
+                        }
                         customersAccounts.put(ada.getEmail(), ada);
                         picked = true;
                     }
