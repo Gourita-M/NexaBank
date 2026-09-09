@@ -3,7 +3,6 @@ package org.example.nexabank.main;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import org.example.nexabank.model.Account;
 import org.example.nexabank.model.Customer;
 import org.example.nexabank.model.Manager;
 import org.example.nexabank.model.Pages;
@@ -20,8 +19,6 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         //Models hena
-        Account account = new Account();
-        //Customer customer = new Customer();
         Pages pages = new Pages();
         Transaction transaction = new Transaction();
 
@@ -48,7 +45,8 @@ public class Main {
                     boolean passed = manager.login(email, password);
 
                     if(passed){
-                        manager.managerBoard();
+                        Customer ada = manager.managerBoard();
+                        customersAccounts.put(ada.getEmail(), ada);
                         picked = true;
                     }
                     break;

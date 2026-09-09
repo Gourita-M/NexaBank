@@ -28,10 +28,11 @@ public class Manager extends Person{
         
     }
 
-    public void managerBoard()
+    public Customer managerBoard()
     {
         int managerChoice = 0;
         boolean exit = false;
+        Customer newCustomer = null;
 
         while(!exit){
             System.out.println("-------------------- Welcome Back " + getFirstName() + "--------------------");
@@ -42,22 +43,38 @@ public class Manager extends Person{
             System.out.println("5. Exit");
 
             managerChoice = scan.nextInt();
+            scan.nextLine();
 
             switch (managerChoice) {
                 case 1:
-                    
+                    System.err.println("------------- Creating a New Customer -------------");
+                    System.err.println("Enter Customer Name: ");
+                    String name = scan.nextLine();
+                    System.err.println("Enter Customer email: ");
+                    String email = scan.nextLine();
+                    // for now l password will be added by the Managers Later I'll Change it so the user will add his password when he join's the first time
+                    // or he must change it when he login the First time
+                    System.err.println("Enter Customer password: ");
+                    String password = scan.nextLine();
+
+                    Account account = new Account("Saving");
+                    //String name, String firstName, String email, String password)
+                    newCustomer = new Customer(name, name, email, password, account);
+
+                    System.out.println("New Customer " + name + " Is Created");
                     break;
-                case 2:
                     
-                    break;
-                case 3:
+                // case 2:
+                //     return newCustomer;
                     
-                    break;
+                // case 3:
+                //     return newCustomer;
+                    
             
                 default:
                     break;
             }
         }
-        
+        return newCustomer;
     }
 }
