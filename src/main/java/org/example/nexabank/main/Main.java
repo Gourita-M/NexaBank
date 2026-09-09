@@ -1,27 +1,33 @@
 package org.example.nexabank.main;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
-import org.example.nexabank.model.*;
+import org.example.nexabank.model.Account;
+import org.example.nexabank.model.Customer;
+import org.example.nexabank.model.Manager;
+import org.example.nexabank.model.Pages;
+import org.example.nexabank.model.Transaction;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Main {
-
     public static void main(String[] args) {
+
+        //Users Accounts
+        HashMap<String, Customer> customersAccounts = new HashMap<>();
 
         Scanner scan = new Scanner(System.in);
 
         //Models hena
         Account account = new Account();
-        Customer customers = new Customer();
-        Manager manager = new Manager();
+        //Customer customer = new Customer();
         Pages pages = new Pages();
         Transaction transaction = new Transaction();
 
-        //Users Accounts
-        
-        
+        //Testing Manager
+        Manager manager = new Manager("Mouad Gourita","Mouad","mouad.gourita@gmail.com","12345");
+
         int choice = 0;
         boolean picked = false;
 
@@ -31,8 +37,10 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    pages.loginPage();
+                    boolean exists = pages.managerLoginPage(manager);
+                    if(exists){
                     picked = true;
+                    }
                     break;
                 case 2:
                     System.out.println("We Are Who We Are The Green Team");
