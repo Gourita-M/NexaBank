@@ -48,5 +48,5 @@ public abstract class Person {
         return password;
     }
 
-    public abstract  void login();
+    public abstract boolean login(String email, String password);
 }

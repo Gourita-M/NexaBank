@@ -26,7 +26,7 @@ public class Main {
         Transaction transaction = new Transaction();
 
         //Testing Manager
-        Manager manager = new Manager("Mouad Gourita","Mouad","mouad.gourita@gmail.com","12345");
+        Manager manager = new Manager(1, "Mouad Gourita","Mouad","mouad","12345");
 
         int choice = 0;
         boolean picked = false;
@@ -34,12 +34,22 @@ public class Main {
         while(!picked){
             pages.welcomePage();
             choice = scan.nextInt();
+            scan.nextLine();
 
             switch (choice) {
+
                 case 1:
-                    boolean exists = pages.managerLoginPage(manager);
-                    if(exists){
-                    picked = true;
+                    System.out.println("Enter Your Email");
+                    String email = scan.nextLine();
+                    
+                    System.out.println("Enter Your Password");
+                    String password = scan.nextLine();
+                    
+                    boolean passed = manager.login(email, password);
+
+                    if(passed){
+                        manager.managerBoard();
+                        picked = true;
                     }
                     break;
                 case 2:
