@@ -1,4 +1,4 @@
-package org.example.nexabank;
+package org.example.nexabank.model;
 
 import java.util.Date;
 

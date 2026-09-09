@@ -1,4 +1,4 @@
-package org.example.nexabank;
+package org.example.nexabank.model;
 
 public abstract class Person {
     protected String name;
