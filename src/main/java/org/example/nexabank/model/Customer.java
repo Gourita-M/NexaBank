@@ -5,15 +5,14 @@ import java.util.Scanner;
 
 public class Customer extends Person{
     private int customerId;
-    private static int nextCustomerId = 0;
+    private int accountId = 1;
     private HashMap<Integer, Account> accounts = new HashMap<>();
     private Scanner scan = new Scanner(System.in);
 
     public Customer(String name, String firstName, String email, String password, Account account)
     {
         super(name, firstName, email, password);
-        customerId = nextCustomerId++;
-        accounts.put(customerId, account);
+        accounts.put(accountId++, account);
     }
 
     public boolean login(String email, String password)
@@ -34,9 +33,9 @@ public class Customer extends Person{
     public void customerBoard()
     {
         int customerChoice = 0;
-        boolean exit = false;
+        boolean exit = true;
 
-        while(!exit){
+        while(exit){
             System.out.println("-------------------- Welcome Back " + getFirstName() + " --------------------");
             System.out.println("1. View Account Balance");
             System.out.println("2. Deposit / Withdrawal");
@@ -49,16 +48,50 @@ public class Customer extends Person{
 
             switch (customerChoice) {
                 case 1:
-                    System.err.println("-------------------- Account Balance --------------------");
-                    System.out.println("Pick Which Account");
-                    
-                    System.out.println("Pick Which Account");
+                    System.err.println("-------------------- Accounts Balance --------------------");
 
+                    for (Account account : accounts.values()) {
+                        System.err.println("Your " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + "DH");
+                        
+                    }
                     break;
                     
                 case 2:
-                    
-                    
+                    System.err.println("-------------------- Deposit / Withdrawal --------------------");
+                    System.out.println("1. Deposit");
+                    System.out.println("2. Withdrawal");
+                    System.out.println("3. Exit");
+                    int depoWithd = 0;
+                    int counter = 0;
+                    depoWithd = scan.nextInt();
+                    switch(depoWithd){
+                        case 1:
+                            counter = 0;
+                        System.err.println("-------------------- Choose an Account --------------------");
+                        for(Account account : accounts.values()){
+                            counter++;
+                            System.out.println(counter + ". " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : ");
+                        }
+                        int accountId = scan.nextInt();
+                        System.out.println("Amount: ");
+                        int amount = scan.nextInt();
+                        if(amount <= 0){
+                            System.err.println("You Can't Deposit This Amount");
+                            break;
+                        }
+                        accounts.get(accountId).setbalance(amount);
+
+                        break;
+                        case 2: 
+                        //     counter = 0;
+                        // for(Account account : accounts.values()){
+                        //     counter++;
+                        //     System.out.println(counter + ". " +account.getaccountType() + " Account '" + account.getAccountNumber() + "' : ");
+                        // }
+
+                        case 3:
+                            break;
+                    }
                 case 3:
                     
                     

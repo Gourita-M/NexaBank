@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Account {
     private int accountId;
-    private static int nextAccountId = 0;
+    private static int nextAccountId = 1;
     private Long accountNumber;
     private int balance;
     private String accountType;
@@ -21,8 +21,8 @@ public class Account {
         this.balance = 0;
         this.accountType = accountType;
     }
-    public void setbalance(int balance){
-        this.balance = balance;
+    public void setbalance(int amount){
+        this.balance = amount;
     }
     public int getAccountId(){
         return accountId;

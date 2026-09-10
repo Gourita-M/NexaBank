@@ -26,6 +26,7 @@ public class Main {
         //Testing Manager and Customer
         Manager manager = new Manager(1, "Mouad Gourita","Mouad","mouad","12345");
         Account account = new Account("Saving");
+        
         Customer newCustomer = new Customer("mm", "aa", "aaa", "12345", account);
         customersAccounts.put("aaa", newCustomer);
 
