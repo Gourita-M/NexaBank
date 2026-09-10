@@ -15,6 +15,11 @@ public class Customer extends Person{
         accounts.put(accountId++, account);
     }
 
+    public void addAccount(Account account)
+    {
+        accounts.put(accountId++, account);
+    }
+
     public boolean login(String email, String password)
     {
         
@@ -28,6 +33,17 @@ public class Customer extends Person{
 
         return false;
         
+    }
+
+    public void transfer(int from, int to,int amount)
+    {
+        if(accounts.get(from).getBalance() < from){
+            System.out.println("Invalid Amount, Not Enough Balance");
+            return;
+        }
+        accounts.get(from).withdrawal(amount);
+
+        accounts.get(to).setbalance(accounts.get(to).getBalance() + amount);
     }
 
     public void customerBoard()
@@ -70,7 +86,7 @@ public class Customer extends Person{
                         System.err.println("-------------------- Choose an Account --------------------");
                         for(Account account : accounts.values()){
                             counter++;
-                            System.out.println(counter + ". " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : ");
+                            System.out.println(counter + ". " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
                         }
                         int accountId = scan.nextInt();
                         System.out.println("Amount: ");
@@ -80,21 +96,44 @@ public class Customer extends Person{
                             break;
                         }
                         accounts.get(accountId).setbalance(amount);
-
+                        
                         break;
                         case 2: 
-                        //     counter = 0;
-                        // for(Account account : accounts.values()){
-                        //     counter++;
-                        //     System.out.println(counter + ". " +account.getaccountType() + " Account '" + account.getAccountNumber() + "' : ");
-                        // }
-
+                            counter = 0;
+                        for(Account account : accounts.values()){
+                            counter++;
+                            System.out.println(counter + ". " +account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
+                        }
+                        int withdaccountId = scan.nextInt();
+                        System.out.println("Amount: ");
+                        int withdamount = scan.nextInt();
+                        if(withdamount <= 0){
+                            System.err.println("You Can't Deposit This Amount");
+                            break;
+                        }
+                        accounts.get(withdaccountId).withdrawal(withdamount);
                         case 3:
                             break;
+                        default:
+                        System.out.println("invalid Try Again: ");
                     }
+                    break;
                 case 3:
-                    
-                    
+                    System.out.println("-------------------- Transfer Between Accounts --------------------");
+                    counter = 0;
+                    for(Account account : accounts.values()){
+                            counter++;
+                            System.out.println(counter + ". " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
+                        }
+                    System.err.println("Enter Which Account You Want to Transfer Money From: ");
+                    int from = scan.nextInt();
+                    System.err.println("To: ");
+                    int to = scan.nextInt();
+                    System.err.println("Amount to Be Transfered: ");
+                    int amount = scan.nextInt();
+
+                    transfer(from, to, amount);
+
                 case 4:
                     
 
@@ -103,7 +142,7 @@ public class Customer extends Person{
                     break;
 
                 default:
-                    break;
+                    System.out.println("invalid Try Again: ");
             }
         }
         

@@ -37,5 +37,16 @@ public class Account {
         return accountType;
     }
 
-    
+    public void withdrawal(int amount)
+    {
+        if(amount > getBalance()){
+            System.out.println("You Don't Have Enough Money in Your Account ");
+            System.out.println("Your Balance is: " + getBalance());
+            
+        }else{
+            setbalance(getBalance() - amount);
+        }
+        
+    }
+
 }
