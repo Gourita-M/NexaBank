@@ -10,8 +10,10 @@ public class Pages {
         // Welcome Page
         System.out.println("-------------------- Welcome To NexaBank --------------------");
         System.out.println("1. Login as a Manager");
-        System.out.println("1. Login as a Customer");
-        System.out.println("2. About Us");
-        System.out.println("3. Exit");
+        System.out.println("2. Login as a Customer");
+        System.out.println("3. About Us");
+        System.out.println("4. Exit");
     }
+
+    
 }

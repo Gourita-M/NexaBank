@@ -40,7 +40,7 @@ public class Manager extends Person{
             System.out.println("2. Modify a Customer Account");
             System.out.println("3. Close a Customer Account");
             System.out.println("4. View Customer Statement");
-            System.out.println("5. Exit");
+            System.out.println("5. Logout");
 
             managerChoice = scan.nextInt();
             scan.nextLine();
@@ -65,13 +65,19 @@ public class Manager extends Person{
                     System.out.println("New Customer " + name + " Is Created");
                     break;
                     
-                // case 2:
-                //     return newCustomer;
+                case 2:
+                    return newCustomer;
                     
-                // case 3:
-                //     return newCustomer;
+                case 3:
+                    return newCustomer;
                     
-            
+                case 4:
+                    return newCustomer;
+
+                case 5:
+                    exit = true;
+                    break;
+
                 default:
                     break;
             }

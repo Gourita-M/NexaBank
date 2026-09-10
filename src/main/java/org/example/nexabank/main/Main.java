@@ -3,6 +3,7 @@ package org.example.nexabank.main;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.example.nexabank.model.Account;
 import org.example.nexabank.model.Customer;
 import org.example.nexabank.model.Manager;
 import org.example.nexabank.model.Pages;
@@ -22,8 +23,11 @@ public class Main {
         Pages pages = new Pages();
         Transaction transaction = new Transaction();
 
-        //Testing Manager
+        //Testing Manager and Customer
         Manager manager = new Manager(1, "Mouad Gourita","Mouad","mouad","12345");
+        Account account = new Account("Saving");
+        Customer newCustomer = new Customer("mm", "aa", "aaa", "12345", account);
+        customersAccounts.put("aaa", newCustomer);
 
         int choice = 0;
         boolean picked = false;
@@ -50,20 +54,35 @@ public class Main {
                             break;
                         }
                         customersAccounts.put(ada.getEmail(), ada);
-                        picked = true;
                     }
                     break;
+
                 case 2:
+                    System.out.println("Enter Your Email");
+                    String customerEmail = scan.nextLine();
+                    
+                    System.out.println("Enter Your Password");
+                    String customerPassword = scan.nextLine();
+
+                    boolean pass = customersAccounts.get(customerEmail).login(customerEmail, customerPassword);
+                    if(pass){
+                        customersAccounts.get(customerEmail).customerBoard();
+                    }
+
+                    break;
+
+                case 3:
                     System.out.println("We Are Who We Are The Green Team");
                     break;
-                case 3:
+                case 4:
+                    System.out.println("Come Back Soon . We Want Your Mony");
+                    picked = true;
                     break;
                 default:
                     System.out.println("invalid Try Again: ");
 
             }
         }
-
 
         scan.close();
     }
