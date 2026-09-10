@@ -33,7 +33,7 @@ public class Account {
     public int getBalance(){
         return balance;
     }
-    public String getaccountType(){
+    public String getAccountType(){
         return accountType;
     }
 

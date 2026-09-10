@@ -14,6 +14,11 @@ public class Customer extends Person{
         super(name, firstName, email, password);
         accounts.put(accountId++, account);
     }
+    public HashMap<Integer, Account> getAccounts()
+    {
+        return accounts;
+    }
+
 
     public void addAccount(Account account)
     {
@@ -37,7 +42,7 @@ public class Customer extends Person{
 
     public void transfer(int from, int to,int amount)
     {
-        if(accounts.get(from).getBalance() < from){
+        if(accounts.get(from).getBalance() < amount){
             System.out.println("Invalid Amount, Not Enough Balance");
             return;
         }
@@ -56,8 +61,9 @@ public class Customer extends Person{
             System.out.println("1. View Account Balance");
             System.out.println("2. Deposit / Withdrawal");
             System.out.println("3. Transfer Between Accounts");
-            System.out.println("4. View Statement");
-            System.out.println("5. Logout");
+            System.out.println("4. Add New Saving/ Account");
+            System.out.println("5. View Statement");
+            System.out.println("6. Logout");
 
             customerChoice = scan.nextInt();
             scan.nextLine();
@@ -67,7 +73,7 @@ public class Customer extends Person{
                     System.err.println("-------------------- Accounts Balance --------------------");
 
                     for (Account account : accounts.values()) {
-                        System.err.println("Your " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + "DH");
+                        System.err.println("Your " + account.getAccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + "DH");
                         
                     }
                     break;
@@ -86,7 +92,7 @@ public class Customer extends Person{
                         System.err.println("-------------------- Choose an Account --------------------");
                         for(Account account : accounts.values()){
                             counter++;
-                            System.out.println(counter + ". " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
+                            System.out.println(counter + ". " + account.getAccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
                         }
                         int accountId = scan.nextInt();
                         System.out.println("Amount: ");
@@ -102,7 +108,7 @@ public class Customer extends Person{
                             counter = 0;
                         for(Account account : accounts.values()){
                             counter++;
-                            System.out.println(counter + ". " +account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
+                            System.out.println(counter + ". " +account.getAccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
                         }
                         int withdaccountId = scan.nextInt();
                         System.out.println("Amount: ");
@@ -123,7 +129,7 @@ public class Customer extends Person{
                     counter = 0;
                     for(Account account : accounts.values()){
                             counter++;
-                            System.out.println(counter + ". " + account.getaccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
+                            System.out.println(counter + ". " + account.getAccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
                         }
                     System.err.println("Enter Which Account You Want to Transfer Money From: ");
                     int from = scan.nextInt();
@@ -133,12 +139,16 @@ public class Customer extends Person{
                     int amount = scan.nextInt();
 
                     transfer(from, to, amount);
-
+                    break;
                 case 4:
                     
 
                 case 5:
-                    exit = true;
+                    exit = false;
+                    break;
+
+                case 6:
+                    exit = false;
                     break;
 
                 default:

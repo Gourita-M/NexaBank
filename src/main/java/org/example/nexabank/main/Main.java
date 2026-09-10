@@ -7,6 +7,7 @@ import org.example.nexabank.model.Account;
 import org.example.nexabank.model.Customer;
 import org.example.nexabank.model.Manager;
 import org.example.nexabank.model.Pages;
+import org.example.nexabank.model.Save;
 import org.example.nexabank.model.Transaction;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -87,6 +88,8 @@ public class Main {
         }
 
         scan.close();
+        Save save = new Save();
+        save.saveCustomers(customersAccounts);
     }
 
 }
