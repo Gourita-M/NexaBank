@@ -57,7 +57,7 @@ public class Manager extends Person{
                     System.err.println("Enter Customer password: ");
                     String password = scan.nextLine();
 
-                    Account account = new Account("Saving");
+                    Account account = new Account("Spending");
                     
                     //String name, String firstName, String email, String password)
                     newCustomer = new Customer(name, name, email, password, account);
