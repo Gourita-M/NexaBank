@@ -7,14 +7,13 @@ import org.example.nexabank.model.Account;
 import org.example.nexabank.model.Customer;
 import org.example.nexabank.model.Manager;
 import org.example.nexabank.model.Pages;
-import org.example.nexabank.model.Save;
 import org.example.nexabank.model.Transaction;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-
+        
         //Users Accounts
         HashMap<String, Customer> customersAccounts = new HashMap<>();
 
@@ -27,9 +26,9 @@ public class Main {
         //Testing Manager and Customer
         Manager manager = new Manager(1, "Mouad Gourita","Mouad","mouad","12345");
         Account account = new Account("Saving");
-        Account accountz = new Account("Saving");
+        Account accountz = new Account("Spending");
         Customer newCustomer = new Customer("mm", "aa", "aaa", "12345", account);
-        newCustomer.addAccount(accountz);
+        newCustomer.setAccounts(accountz);
         customersAccounts.put("aaa", newCustomer);
 
         int choice = 0;
@@ -78,7 +77,7 @@ public class Main {
                     System.out.println("We Are Who We Are The Green Team");
                     break;
                 case 4:
-                    System.out.println("Come Back Soon . We Want Your Mony");
+                    System.out.println("Come Back Soon . We Want Your Money");
                     picked = true;
                     break;
                 default:
@@ -88,8 +87,6 @@ public class Main {
         }
 
         scan.close();
-        Save save = new Save();
-        save.saveCustomers(customersAccounts);
     }
 
 }
