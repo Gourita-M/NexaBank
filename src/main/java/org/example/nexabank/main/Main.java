@@ -1,9 +1,15 @@
 package org.example.nexabank.main;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.example.nexabank.model.*;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import org.example.nexabank.model.Account;
+import org.example.nexabank.model.Customer;
+import org.example.nexabank.model.Manager;
+import org.example.nexabank.model.Pages;
+import org.example.nexabank.model.Save;
+import org.example.nexabank.model.Transaction;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Main {
@@ -36,7 +42,7 @@ public class Main {
 
             switch (choice) {
 
-                case 1:
+                case 1: //login as Manager
                     System.out.println("Enter Your Email");
                     String email = scan.nextLine();
                     
@@ -54,7 +60,7 @@ public class Main {
                     }
                     break;
 
-                case 2:
+                case 2: //login as Customer
                     System.out.println("Enter Your Email");
                     String customerEmail = scan.nextLine();
                     
