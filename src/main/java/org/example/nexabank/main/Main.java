@@ -1,10 +1,10 @@
 package org.example.nexabank.main;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 import org.example.nexabank.model.Account;
 import org.example.nexabank.model.Customer;
+import org.example.nexabank.model.CustomerStorage;
 import org.example.nexabank.model.Manager;
 import org.example.nexabank.model.Pages;
 import org.example.nexabank.model.Transaction;
@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         
         //Users Accounts
-        HashMap<String, Customer> customersAccounts = new HashMap<>();
+        // HashMap<String, Customer> customersAccounts = new HashMap<>();
 
         Scanner scan = new Scanner(System.in);
 
@@ -29,7 +29,8 @@ public class Main {
         Account accountz = new Account("Spending");
         Customer newCustomer = new Customer("mm", "aa", "aaa", "12345", account);
         newCustomer.setAccounts(accountz);
-        customersAccounts.put("aaa", newCustomer);
+        //customersAccounts.put("aaa", newCustomer);
+        CustomerStorage.setCustomersStorage("aaa", newCustomer);
 
         int choice = 0;
         boolean picked = false;
@@ -51,11 +52,11 @@ public class Main {
                     boolean passed = manager.login(email, password);
 
                     if(passed){
-                        Customer ada = manager.managerBoard();
-                        if(ada == null){
-                            break;
-                        }
-                        customersAccounts.put(ada.getEmail(), ada);
+                        manager.managerBoard();
+                        // if(ada == null){
+                        //     break;
+                        // }
+                        // CustomerStorage.setCustomersStorage(ada.getEmail(), ada);
                     }
                     break;
 
@@ -66,9 +67,9 @@ public class Main {
                     System.out.println("Enter Your Password");
                     String customerPassword = scan.nextLine();
 
-                    boolean pass = customersAccounts.get(customerEmail).login(customerEmail, customerPassword);
+                    boolean pass = CustomerStorage.getCustomersStorage().get(customerEmail).login(customerEmail, customerPassword);
                     if(pass){
-                        customersAccounts.get(customerEmail).customerBoard();
+                        CustomerStorage.getCustomersStorage().get(customerEmail).customerBoard();
                     }
 
                     break;
