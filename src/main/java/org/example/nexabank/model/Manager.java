@@ -28,7 +28,7 @@ public class Manager extends Person{
         
     }
 
-    public Customer managerBoard()
+    public void managerBoard()
     {
         int managerChoice = 0;
         boolean exit = false;
@@ -59,20 +59,41 @@ public class Manager extends Person{
 
                     Account account = new Account("Spending");
                     
-                    //String name, String firstName, String email, String password)
                     newCustomer = new Customer(name, name, email, password, account);
+                    CustomerStorage.setCustomersStorage(email, newCustomer);
 
                     System.out.println("New Customer " + name + " Is Created");
                     break;
                     
-                case 2:
-                    return newCustomer;
+                case 2: //Modify a Customer
+                    System.err.println("------------- Modifying a New Customer -------------");
+                    System.err.println("");
+                    System.err.println("Please Enter The User Email: ");
+                    String customerEmail = scan.nextLine();
+
+                    System.out.println("User: " + CustomerStorage.getCustomersStorage().get(customerEmail).getFirstName()
+                                         + "  |  "  + CustomerStorage.getCustomersStorage().get(customerEmail).getEmail());
+
+                    System.err.println("");
+
+                    System.err.println("New Name: ");
+                    String newFirstName = scan.nextLine();
+                    System.err.println("New Email: ");
+                    String newEmail = scan.nextLine();
+
+                    CustomerStorage.getCustomersStorage().get(customerEmail).setfirstName(newFirstName);
+                    CustomerStorage.getCustomersStorage().get(customerEmail).setemail(newEmail);
+
+                    System.out.println(CustomerStorage.getCustomersStorage().get(customerEmail).getEmail());
+
+                    System.err.println("User Info is Changed");
                     
+                    break;
                 case 3:
-                    return newCustomer;
+            
                     
                 case 4:
-                    return newCustomer;
+                    
 
                 case 5:
                     exit = true;
@@ -82,6 +103,5 @@ public class Manager extends Person{
                     break;
             }
         }
-        return newCustomer;
     }
 }
