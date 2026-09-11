@@ -19,8 +19,7 @@ public class Customer extends Person{
         return accounts;
     }
 
-
-    public void addAccount(Account account)
+    public void setAccounts(Account account)
     {
         accounts.put(accountId++, account);
     }
@@ -102,7 +101,8 @@ public class Customer extends Person{
                             break;
                         }
                         accounts.get(accountId).setbalance(amount);
-                        
+
+                        Save.saveTransactionsHistory("Deposit", accounts.get(accountId).getAccountNumber(), amount);
                         break;
                         case 2: 
                             counter = 0;
@@ -114,10 +114,12 @@ public class Customer extends Person{
                         System.out.println("Amount: ");
                         int withdamount = scan.nextInt();
                         if(withdamount <= 0){
-                            System.err.println("You Can't Deposit This Amount");
+                            System.err.println("You Can't Withdrawal This Amount");
                             break;
                         }
                         accounts.get(withdaccountId).withdrawal(withdamount);
+
+                        Save.saveTransactionsHistory("Withdrawal", accounts.get(withdaccountId).getAccountNumber(), withdamount);
                         case 3:
                             break;
                         default:
@@ -139,12 +141,40 @@ public class Customer extends Person{
                     int amount = scan.nextInt();
 
                     transfer(from, to, amount);
-                    break;
-                case 4:
-                    
 
-                case 5:
-                    exit = false;
+                    Save.saveTransactionsHistory("Transfer", accounts.get(from).getAccountNumber(), amount);
+                    break;
+                case 4: // New Saving/ Account
+                    System.err.println("What Account Type Do You Want");
+                    System.err.println("1. Saving");
+                    System.err.println("2. Spending");
+                    int accType = scan.nextInt();
+                    if(accType == 1){
+                        Account account = new Account("Saving");
+                        setAccounts(account);
+                        System.out.println("A New Saving Account is Added");
+                        break;
+                    }else if(accType == 2){
+                        Account account = new Account("Spending");
+                        setAccounts(account);
+                        System.out.println("A New Spending Account is Added");
+                        break;
+                    }else{
+                        System.out.println("Invalid Choice, Try Again");
+                        break;
+                    }
+                    
+                case 5: //View Statement
+                    counter = 0;
+
+                    System.err.println("-------------------- Choose an Account --------------------");
+                        for(Account account : accounts.values()){
+                            counter++;
+                            System.out.println(counter + ". " + account.getAccountType() + " Account '" + account.getAccountNumber() + "' : " + account.getBalance() + " DH");
+                        }
+                        int accountId = scan.nextInt();
+                        
+                    Read.accountStatment(accounts.get(accountId).getAccountNumber());
                     break;
 
                 case 6:
