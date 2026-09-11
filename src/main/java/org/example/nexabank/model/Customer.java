@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Customer extends Person{
     private int customerId;
-    private int accountId = 1;
+    private static int accountId = 1;
     private HashMap<Integer, Account> accounts = new HashMap<>();
     private Scanner scan = new Scanner(System.in);
 
@@ -185,6 +185,11 @@ public class Customer extends Person{
                     System.out.println("invalid Try Again: ");
             }
         }
+        
+    }
+
+    public void editCutomerAccount(String email)
+    {
         
     }
 
